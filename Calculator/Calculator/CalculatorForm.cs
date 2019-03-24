@@ -72,8 +72,15 @@ namespace Calculator
             try
             {
                 GetValues(out double number1, out double number2);
-                double answer = proxy.CalculatorService.Divide(number1, number2);
-                tbResult.Text = answer.ToString();
+                try
+                {
+                    double answer = proxy.CalculatorService.Divide(number1, number2);
+                    tbResult.Text = answer.ToString();
+                }
+                catch (FaultException ex)
+                {
+                    MessageBox.Show(ex.Message, "Error!");
+                }
             }
             catch (FormatException ex)
             {

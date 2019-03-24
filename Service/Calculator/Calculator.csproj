@@ -80,6 +80,12 @@
     <None Include="Connected Services\ServiceReference\CalculatorService1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\ServiceReference\CalculatorService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference\CalculatorService21.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

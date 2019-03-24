@@ -11,6 +11,8 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8000/CalculatorService?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8000/CalculatorService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8000/CalculatorService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/System.ServiceModel" />
+      <xsd:import schemaLocation="http://localhost:8000/CalculatorService?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="ICalculator_Add_InputMessage">
@@ -37,6 +39,9 @@
   <wsdl:message name="ICalculator_Divide_OutputMessage">
     <wsdl:part name="parameters" element="tns:DivideResponse" />
   </wsdl:message>
+  <wsdl:message name="ICalculator_Divide_FaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/System.ServiceModel" name="detail" element="q1:FaultException" />
+  </wsdl:message>
   <wsdl:portType name="ICalculator">
     <wsdl:operation name="Add">
       <wsdl:input wsaw:Action="http://tempuri.org/ICalculator/Add" message="tns:ICalculator_Add_InputMessage" />
@@ -53,6 +58,7 @@
     <wsdl:operation name="Divide">
       <wsdl:input wsaw:Action="http://tempuri.org/ICalculator/Divide" message="tns:ICalculator_Divide_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICalculator/DivideResponse" message="tns:ICalculator_Divide_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ICalculator/DivideFaultExceptionFault" name="FaultExceptionFault" message="tns:ICalculator_Divide_FaultExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_ICalculator" type="tns:ICalculator">
@@ -93,6 +99,9 @@
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="FaultExceptionFault">
+        <soap12:fault use="literal" name="FaultExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="Calculator">

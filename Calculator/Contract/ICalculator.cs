@@ -17,6 +17,7 @@ namespace CalculatorContract
         [OperationContract]
         double Multiply(double num1, double num2);
         [OperationContract]
+        [FaultContract(typeof(FaultException))]
         double Divide(double num1, double num2);
     }
 }

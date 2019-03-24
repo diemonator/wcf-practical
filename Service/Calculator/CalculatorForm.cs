@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -65,15 +66,15 @@ namespace Calculator
 
         private void BtnDivide_Click(object sender, EventArgs e)
         {
+            GetValues(out double number1, out double number2);
             try
             {
-                GetValues(out double number1, out double number2);
                 double answer = proxy.Divide(number1, number2);
                 tbResult.Text = answer.ToString();
             }
-            catch (FormatException ex)
+            catch (FaultException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error!");
             }
         }
 
