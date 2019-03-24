@@ -95,5 +95,14 @@ namespace Webshop
             UpdateProduct(product);
         }
 
+        public void DisconnectedClient(int numberOfConnectedClients)
+        {
+            UpdateLabel(numberOfConnectedClients);
+        }
+
+        private void WebshopForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            proxy.Disconnect();
+        }
     }
 }

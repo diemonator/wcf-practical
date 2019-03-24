@@ -21,5 +21,7 @@ namespace Service
         bool BuyProduct(string productId);
         [OperationContract(IsOneWay = true)]
         void Connect();
+        [OperationContract(IsOneWay = true)]
+        void Disconnect();
     }
 }

@@ -16,7 +16,7 @@ namespace Service
         private List<IWebshopCallback> clients;
         private List<Order> orders;
         private Action<int, string, DateTime> myEvent;
-        private static int counter = 0;
+        private static int counter = 1;
 
         public Webshop()
         {
@@ -110,6 +110,16 @@ namespace Service
         {
             IMyEvent myEvent = OperationContext.Current.GetCallbackChannel<IMyEvent>();
             this.myEvent += myEvent.OnOrder;
+        }
+
+        public void Disconnect()
+        {
+            IWebshopCallback currentClient = OperationContext.Current.GetCallbackChannel<IWebshopCallback>();
+            if (clients.Contains(currentClient))
+            {
+                clients.Remove(currentClient);
+                clients.ForEach(client => client.DisconnectedClient(clients.Count));
+            }
         }
     }
 }

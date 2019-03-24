@@ -310,6 +310,29 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IWebshop_Disconnect_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsp:Policy wsu:Id="WSDualHttpBinding_IWebshop_NewClientConnected_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -334,6 +357,29 @@
     </wsp:ExactlyOne>
   </wsp:Policy>
   <wsp:Policy wsu:Id="WSDualHttpBinding_IWebshop_ProductSold_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IWebshop_DisconnectedClient_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -700,11 +746,17 @@
   <wsdl:message name="IWebshop_Connect_InputMessage">
     <wsdl:part name="parameters" element="tns:Connect" />
   </wsdl:message>
+  <wsdl:message name="IWebshop_Disconnect_InputMessage">
+    <wsdl:part name="parameters" element="tns:Disconnect" />
+  </wsdl:message>
   <wsdl:message name="IWebshop_NewClientConnected_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:NewClientConnected" />
   </wsdl:message>
   <wsdl:message name="IWebshop_ProductSold_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ProductSold" />
+  </wsdl:message>
+  <wsdl:message name="IWebshop_DisconnectedClient_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectedClient" />
   </wsdl:message>
   <wsdl:message name="IShipping_GetOrderList_InputMessage">
     <wsdl:part name="parameters" element="tns:GetOrderList" />
@@ -753,11 +805,17 @@
     <wsdl:operation name="Connect">
       <wsdl:input wsaw:Action="http://tempuri.org/IWebshop/Connect" message="tns:IWebshop_Connect_InputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="Disconnect">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebshop/Disconnect" message="tns:IWebshop_Disconnect_InputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="NewClientConnected">
       <wsdl:output wsaw:Action="http://tempuri.org/IWebshop/NewClientConnected" message="tns:IWebshop_NewClientConnected_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation name="ProductSold">
       <wsdl:output wsaw:Action="http://tempuri.org/IWebshop/ProductSold" message="tns:IWebshop_ProductSold_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DisconnectedClient">
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebshop/DisconnectedClient" message="tns:IWebshop_DisconnectedClient_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IShipping">
@@ -835,6 +893,13 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
+    <wsdl:operation name="Disconnect">
+      <soap12:operation soapAction="http://tempuri.org/IWebshop/Disconnect" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IWebshop_Disconnect_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
     <wsdl:operation name="NewClientConnected">
       <soap12:operation soapAction="http://tempuri.org/IWebshop/NewClientConnected" style="document" />
       <wsdl:output>
@@ -846,6 +911,13 @@
       <soap12:operation soapAction="http://tempuri.org/IWebshop/ProductSold" style="document" />
       <wsdl:output>
         <wsp:PolicyReference URI="#WSDualHttpBinding_IWebshop_ProductSold_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisconnectedClient">
+      <soap12:operation soapAction="http://tempuri.org/IWebshop/DisconnectedClient" style="document" />
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IWebshop_DisconnectedClient_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

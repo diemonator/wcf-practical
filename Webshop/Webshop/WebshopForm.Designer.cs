@@ -173,6 +173,7 @@
             this.Controls.Add(this.BtnShopName);
             this.Name = "WebshopForm";
             this.Text = "Webshop Form";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WebshopForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

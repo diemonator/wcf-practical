@@ -200,6 +200,12 @@ namespace Shipping.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWebshop/Connect")]
         System.Threading.Tasks.Task ConnectAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWebshop/Disconnect")]
+        void Disconnect();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWebshop/Disconnect")]
+        System.Threading.Tasks.Task DisconnectAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -210,6 +216,9 @@ namespace Shipping.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWebshop/ProductSold")]
         void ProductSold(Shipping.ServiceReference.Item product);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWebshop/DisconnectedClient")]
+        void DisconnectedClient(int numberOfConnectedClients);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -278,6 +287,14 @@ namespace Shipping.ServiceReference {
         
         public System.Threading.Tasks.Task ConnectAsync() {
             return base.Channel.ConnectAsync();
+        }
+        
+        public void Disconnect() {
+            base.Channel.Disconnect();
+        }
+        
+        public System.Threading.Tasks.Task DisconnectAsync() {
+            return base.Channel.DisconnectAsync();
         }
     }
     
