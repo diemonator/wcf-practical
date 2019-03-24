@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="1ef34cf6-c1be-4c01-8494-16cdacfac789" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/wcf/webshop/" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="67ec64a1-b656-4700-83d5-13bad5ad539e" SourceId="1" SourceUrl="http://localhost:8733/wcf/webshop/?xsd=xsd1" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="ba2b1b3e-3b2c-402f-aa61-dd2a03e37e3e" SourceId="1" SourceUrl="http://localhost:8733/wcf/webshop/?xsd=xsd0" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="1c15d7c6-818c-472e-83ec-79ed30d744b2" SourceId="1" SourceUrl="http://localhost:8733/wcf/webshop/?xsd=xsd2" />
+    <MetadataFile FileName="Webshop.wsdl" MetadataType="Wsdl" ID="1bc34d4c-4e1d-4643-8a84-7a07f4b06f4a" SourceId="1" SourceUrl="http://localhost:8733/wcf/webshop/?wsdl" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="94961ad9-04bc-4da3-8756-302540a4f7e8" SourceId="1" SourceUrl="http://localhost:8733/wcf/webshop/?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
