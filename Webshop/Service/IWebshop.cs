@@ -14,7 +14,7 @@ namespace Service
         [OperationContract]
         string GetWebshopName();
         [OperationContract]
-        Item[] GetProductList();
+        List<Item> GetProductList();
         [OperationContract]
         string GetProductInfo(string productId);
         [OperationContract]

@@ -21,7 +21,11 @@ namespace Webshop
         {
             InitializeComponent();
             proxy = new WebshopClient(new InstanceContext(this));
-            proxy.Connect();
+            if (proxy != null)
+            { 
+                PopulateLists(proxy.GetProductList());
+                proxy.Connect();
+            }
         }
 
         private void BtnShopName_Click(object sender, EventArgs e)
@@ -31,14 +35,7 @@ namespace Webshop
 
         private void BtnProducts_Click(object sender, EventArgs e)
         {
-            ClearListBoxes();
-            Item[] products = proxy.GetProductList();
-            foreach (Item item in products)
-            {
-                lbId.Items.Add(item.ProductId);
-                lbPrice.Items.Add(item.Price);
-                lbStock.Items.Add(item.Stock);
-            }
+            PopulateLists(proxy.GetProductList());
         }
 
         private void BtnProductInfo_Click(object sender, EventArgs e)
@@ -84,6 +81,7 @@ namespace Webshop
         }
 
         // This is required to prevent deadlock
+        // Deadlock is seen when new client joins while data is shown on listbox
         public void NewClientConnected(int numberOfConnectedClients)
         {
             UpdateLabel(numberOfConnectedClients);
@@ -103,6 +101,17 @@ namespace Webshop
         private void WebshopForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             proxy.Disconnect();
+        }
+
+        private void PopulateLists(List<Item> items)
+        {
+            ClearListBoxes();
+            foreach (Item item in items)
+            {
+                lbId.Items.Add(item.ProductId);
+                lbPrice.Items.Add(item.Price);
+                lbStock.Items.Add(item.Stock);
+            }
         }
     }
 }

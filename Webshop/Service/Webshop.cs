@@ -12,7 +12,7 @@ namespace Service
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Reentrant)]
     public class Webshop : IWebshop, IShipping
     {
-        private readonly Item[] products;
+        private List<Item> products;
         private List<IWebshopCallback> clients;
         private List<Order> orders;
         private Action<int, string, DateTime> myEvent;
@@ -21,7 +21,7 @@ namespace Service
         public Webshop()
         {
             clients = new List<IWebshopCallback>();
-            products = new Item[]
+            products = new List<Item>()
             {
                 new Item("Dracula", "Scary", 10.5, 5),
                 new Item("A room with a view", "Drama", 15, 9),
@@ -67,7 +67,7 @@ namespace Service
             return GetProduct(productId).ProductInfo;
         }
 
-        public Item[] GetProductList()
+        public List<Item> GetProductList()
         {
             return products;
         }
@@ -79,7 +79,14 @@ namespace Service
 
         private Item GetProduct(string productId)
         {
-            return Array.Find(products, item => item.ProductId == productId);
+            try
+            {
+                return products.Find(item => item.ProductId == productId);
+            }
+            catch (ArgumentNullException)
+            {
+                return null;   
+            }
         }
 
         public List<Order> GetOrderList()
@@ -89,15 +96,16 @@ namespace Service
 
         public bool ShipOrder(int OrderId)
         {
-            foreach (Order order in orders)
+            try
             {
-                if (OrderId == order.OrderId)
-                {
-                    myEvent(OrderId, order.ProductId, order.Moment);
-                    return true;
-                }
+                Order order = orders.Find(o => o.OrderId == OrderId);
+                myEvent(OrderId, order.ProductId, order.Moment);
+                return true;
             }
-            return false;
+            catch (ArgumentException)
+            {
+                return false;
+            }
         }
 
         public void UnSubscribe()

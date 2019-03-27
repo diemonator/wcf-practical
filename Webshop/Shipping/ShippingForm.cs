@@ -20,7 +20,11 @@ namespace Shipping
         {
             InitializeComponent();
             proxy = new ShippingClient(new InstanceContext(this));
-            proxy.Subscribe();
+            if (proxy != null)
+            { 
+                proxy.Subscribe();
+                ShowOrders(proxy.GetOrderList());
+            }
         }
 
         public void OnOrder(int orderId, string productId, DateTime moment)
@@ -31,8 +35,13 @@ namespace Shipping
 
         private void BtnShowOrder_Click(object sender, EventArgs e)
         {
+            ShowOrders(proxy.GetOrderList());
+        }
+
+        private void ShowOrders(List<Order> orders)
+        {
             ClearListBoxes();
-            foreach (var item in proxy.GetOrderList())
+            foreach (var item in orders)
             {
                 lbOrderId.Items.Add(item.OrderId);
                 lbDateTime.Items.Add(item.ProductId + " - " + item.Moment);

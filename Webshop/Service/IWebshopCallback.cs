@@ -12,8 +12,10 @@ namespace Service
     {
         [OperationContract(IsOneWay = true)]
         void NewClientConnected(int numberOfConnectedClients);
+
         [OperationContract(IsOneWay = true)]
         void ProductSold(Item product);
+
         [OperationContract(IsOneWay = true)]
         void DisconnectedClient(int numberOfConnectedClients);
     }

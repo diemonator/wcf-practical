@@ -115,17 +115,7 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="SubscribeResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
   <xs:element name="UnSubscribe">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="UnSubscribeResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>

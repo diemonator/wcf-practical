@@ -178,10 +178,10 @@ namespace Shipping.ServiceReference {
         System.Threading.Tasks.Task<string> GetWebshopNameAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWebshop/GetProductList", ReplyAction="http://tempuri.org/IWebshop/GetProductListResponse")]
-        Shipping.ServiceReference.Item[] GetProductList();
+        System.Collections.Generic.List<Shipping.ServiceReference.Item> GetProductList();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWebshop/GetProductList", ReplyAction="http://tempuri.org/IWebshop/GetProductListResponse")]
-        System.Threading.Tasks.Task<Shipping.ServiceReference.Item[]> GetProductListAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Shipping.ServiceReference.Item>> GetProductListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWebshop/GetProductInfo", ReplyAction="http://tempuri.org/IWebshop/GetProductInfoResponse")]
         string GetProductInfo(string productId);
@@ -257,11 +257,11 @@ namespace Shipping.ServiceReference {
             return base.Channel.GetWebshopNameAsync();
         }
         
-        public Shipping.ServiceReference.Item[] GetProductList() {
+        public System.Collections.Generic.List<Shipping.ServiceReference.Item> GetProductList() {
             return base.Channel.GetProductList();
         }
         
-        public System.Threading.Tasks.Task<Shipping.ServiceReference.Item[]> GetProductListAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Shipping.ServiceReference.Item>> GetProductListAsync() {
             return base.Channel.GetProductListAsync();
         }
         
@@ -303,10 +303,10 @@ namespace Shipping.ServiceReference {
     public interface IShipping {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IShipping/GetOrderList", ReplyAction="http://tempuri.org/IShipping/GetOrderListResponse")]
-        Shipping.ServiceReference.Order[] GetOrderList();
+        System.Collections.Generic.List<Shipping.ServiceReference.Order> GetOrderList();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IShipping/GetOrderList", ReplyAction="http://tempuri.org/IShipping/GetOrderListResponse")]
-        System.Threading.Tasks.Task<Shipping.ServiceReference.Order[]> GetOrderListAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Shipping.ServiceReference.Order>> GetOrderListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IShipping/ShipOrder", ReplyAction="http://tempuri.org/IShipping/ShipOrderResponse")]
         bool ShipOrder(int OrderId);
@@ -314,16 +314,16 @@ namespace Shipping.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IShipping/ShipOrder", ReplyAction="http://tempuri.org/IShipping/ShipOrderResponse")]
         System.Threading.Tasks.Task<bool> ShipOrderAsync(int OrderId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IShipping/Subscribe", ReplyAction="http://tempuri.org/IShipping/SubscribeResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IShipping/Subscribe")]
         void Subscribe();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IShipping/Subscribe", ReplyAction="http://tempuri.org/IShipping/SubscribeResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IShipping/Subscribe")]
         System.Threading.Tasks.Task SubscribeAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IShipping/UnSubscribe", ReplyAction="http://tempuri.org/IShipping/UnSubscribeResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IShipping/UnSubscribe")]
         void UnSubscribe();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IShipping/UnSubscribe", ReplyAction="http://tempuri.org/IShipping/UnSubscribeResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IShipping/UnSubscribe")]
         System.Threading.Tasks.Task UnSubscribeAsync();
     }
     
@@ -362,11 +362,11 @@ namespace Shipping.ServiceReference {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public Shipping.ServiceReference.Order[] GetOrderList() {
+        public System.Collections.Generic.List<Shipping.ServiceReference.Order> GetOrderList() {
             return base.Channel.GetOrderList();
         }
         
-        public System.Threading.Tasks.Task<Shipping.ServiceReference.Order[]> GetOrderListAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Shipping.ServiceReference.Order>> GetOrderListAsync() {
             return base.Channel.GetOrderListAsync();
         }
         

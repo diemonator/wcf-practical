@@ -15,9 +15,9 @@ namespace Service
         List<Order> GetOrderList();
         [OperationContract]
         bool ShipOrder(int OrderId);
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void Subscribe();
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void UnSubscribe();
     }
 }
